@@ -55,7 +55,7 @@ services:
   db:
     image: mysql:5.7
       networks:
-      - rede-wordpress
+        - rede-wordpress
     environment:
       MYSQL_DATABASE: exampledb
       MYSQL_USER: usertest
