@@ -66,8 +66,7 @@ services:
         source: db_data
         target: /var/lib/mysql
         volume:
-          nocopy: true
-	  
+          nocopy: true  
     deploy:
       mode: replicated
       replicas: 1
