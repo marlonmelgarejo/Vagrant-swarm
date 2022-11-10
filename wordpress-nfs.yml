@@ -46,14 +46,14 @@ services:
     deploy:
       replicas: 1
       update_config:
-      parallelism: 1
-      delay: 15s
-    restart_policy:
-      condition: on-failure
-    resources:
-      limits:
-        cpus: '0.50'
-        memory: 300M
+        parallelism: 1
+        delay: 15s
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 300M
 
   db:
     image: mysql:5.7
