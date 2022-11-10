@@ -26,7 +26,6 @@ networks:
 
 services:
   wordpress:
-  
     image: wordpress:6.0.1-php8.0-apache
     ports:
       - "8085:80"  
@@ -51,6 +50,10 @@ services:
       delay: 15s
     restart_policy:
       condition: on-failure
+    resources:
+      limits:
+        cpus: '0.50'
+        memory: 300M
 
   db:
     image: mysql:5.7
@@ -70,12 +73,14 @@ services:
     deploy:
       mode: replicated
       replicas: 1
+      placement:
+        constraints: [node.hostname == srv-manager] 
       update_config:
         parallelism: 1
         delay: 15s
-    restart_policy:
-      condition: on-failure
-    resources:
-      limits:
-        cpus: '0.50'
-        memory: 300M
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 300M
