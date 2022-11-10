@@ -46,7 +46,7 @@ services:
           nocopy: true
     deploy:
       replicas: 1
-	  update_config:
+      update_config:
       parallelism: 1
       delay: 15s
     restart_policy:
@@ -54,7 +54,7 @@ services:
 
   db:
     image: mysql:5.7
-	networks:
+      networks:
       - rede-wordpress
     environment:
       MYSQL_DATABASE: exampledb
@@ -69,9 +69,14 @@ services:
           nocopy: true
 	  
     deploy:
+      mode: replicated
       replicas: 1
-	  update_config:
-      parallelism: 1
-      delay: 15s
+      update_config:
+        parallelism: 1
+        delay: 15s
     restart_policy:
       condition: on-failure
+    resources:
+      limits:
+        cpus: '0.50'
+        memory: 300M
