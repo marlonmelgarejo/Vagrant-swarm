@@ -28,27 +28,22 @@ services:
   wordpress:
   
     image: wordpress:6.0.1-php8.0-apache
-	
     ports:
-      - "8085:80"
-	  
+      - "8085:80"  
     networks:
       - rede-wordpress
-	  
     environment:
       TZ: America/Campo_Grande
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: usertest
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
-
     volumes:
       - type: volume
         source: html_data
         target: /var/www/html
         volume:
           nocopy: true
-
     deploy:
       replicas: 1
 	  update_config:
@@ -56,27 +51,23 @@ services:
       delay: 15s
     restart_policy:
       condition: on-failure
-		
 
   db:
     image: mysql:5.7
-	
 	networks:
       - rede-wordpress
-	
     environment:
       MYSQL_DATABASE: exampledb
       MYSQL_USER: usertest
       MYSQL_PASSWORD: examplepass
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
-	  
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'  
     volumes:
       - type: volume
         source: db_data
         target: /var/lib/mysql
         volume:
           nocopy: true
-		  
+	  
     deploy:
       replicas: 1
 	  update_config:
