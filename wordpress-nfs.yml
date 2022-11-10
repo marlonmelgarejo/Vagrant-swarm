@@ -7,14 +7,14 @@ volumes:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=10.47.18.218,nolock,soft,rw
+      o: addr=10.47.11.230,nolock,soft,rw
       device: ":/mnt/dadosnfs/html_data/"
 
   db_data:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=47.18.218,nolock,soft,rw
+      o: addr=10.47.11.230,nolock,soft,rw
       device: ":/mnt/dadosnfs/db_data/"
 
 ################### Rede para containers - Overlay ##################
@@ -50,7 +50,7 @@ services:
           nocopy: true
 
     deploy:
-      replicas: 3
+      replicas: 1
 	  update_config:
       parallelism: 1
       delay: 15s
