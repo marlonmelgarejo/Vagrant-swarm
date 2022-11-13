@@ -7,14 +7,14 @@ volumes:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=10.47.11.230,nolock,soft,rw
+      o: addr=192.168.0.233,nolock,soft,rw
       device: ":/mnt/dadosnfs/html_data/"
 
   db_data:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=10.47.11.230,nolock,soft,rw
+      o: addr=192.168.0.233,nolock,soft,rw
       device: ":/mnt/dadosnfs/db_data/"
 
 ################### Rede para containers - Overlay ##################
@@ -26,7 +26,7 @@ networks:
 
 services:
   wordpress:
-    image: wordpress:6.0.1-php8.0-apache
+    image: wordpress:6.1.0-php8.0-apache
     ports:
       - "8085:80"  
     networks:
